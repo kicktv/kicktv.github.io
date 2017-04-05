@@ -1,0 +1,5 @@
+ErrorDocument 400 https://khaledtv.github.io/error.html
+ErrorDocument 401 https://khaledtv.github.io/error.html
+ErrorDocument 403 https://khaledtv.github.io/error.html
+ErrorDocument 404 https://khaledtv.github.io/error.html
+ErrorDocument 503 https://khaledtv.github.io/error.html
