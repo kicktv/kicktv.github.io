@@ -1,0 +1,115 @@
+<!DOCTYPE html><html><head><title>Accordion with HTML, CSS & jQuery </title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1"><style>
+body{position:relative;z-index:0}.main{width:420px}
+.site-header-wrap{margin-bottom:60px;border-bottom:1px solid #cd9ad6}
+/*----- Accordion -----*/
+.accordion,.accordion *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+.accordion{overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.25);border-radius:3px;background:#f7f7f7}
+/*----- Section Titles -----*/
+.accordion-section-title{width:420px;padding:15px;display:inline-block;border-bottom:1px solid #fbf6f6;background:#ff0505;transition:all linear .15s;font-size:1.2em;text-shadow:0 1px 0 #1a1a1a;color:#fff;text-decoration:none}.accordion-section-title::after{content:'\002B';font-size:15px;color:#080707;font-weight:700;float:right;margin-left:5px}.accordion-section-title.active,.accordion-section-title:hover{background:#0d21ff;text-decoration:none}.accordion-section:last-child .accordion-section-title{border-bottom:none}
+/*----- Section Content -----*/
+.accordion-section-content {padding:15px;display:none;}
+/*----- Menu ul -----*/
+ul { list-style-type: none;margin: -16px;padding: 0px;width: 422px; background-color: #08ff14;}
+li a {display: block;color: #000;padding: 8px 16px; text-decoration: none;border:1px solid white;}
+li a:hover {background-color: yellow; color: white;}
+li a:focus {background-color: yellow; color: red;}
+</style>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+jQuery(document).ready(function(){function e(){jQuery(".accordion .accordion-section-title").removeClass("active"),jQuery(".accordion .accordion-section-content").slideUp(300).removeClass("open")}jQuery(".accordion-section-title").click(function(c){var o=jQuery(this).attr("href");jQuery(c.target).is(".active")?e():(e(),jQuery(this).addClass("active"),jQuery(".accordion "+o).slideDown(300).addClass("open")),c.preventDefault()})});
+</script>
+
+</head><body>
+<div class="main">
+<div class="accordion">
+<div class="accordion-section">
+<a class="accordion-section-title" href="#accordion-1">Accordion Section 01</a>
+<div id="accordion-1" class="accordion-section-content">
+<!=====================================================================>
+<div id="menu"><ul>
+ <li><a href="#Server10" target="myifram">Server10</a></li>
+ <li><a href="#Server10" target="myifram">Server11</a></li>
+ <li><a href="#Server10" target="myifram">Server12</a></li>
+ <li><a href="#Server10" target="myifram">Server13</a></li>
+<li><a href="#Server10" target="myifram">Server14</a></li></ul></div>
+<!=====================================================================>
+</div></div>
+<div class="accordion-section">
+<a class="accordion-section-title" href="#accordion-2">Accordion Section 02</a>
+<div id="accordion-2" class="accordion-section-content">
+<!=====================================================================>
+<div id="menu"><ul>
+ <li><a href="#Server10" target="myifram">Server10</a></li>
+ <li><a href="#Server10" target="myifram">Server11</a></li>
+ <li><a href="#Server10" target="myifram">Server12</a></li>
+ <li><a href="#Server10" target="myifram">Server13</a></li>
+<li><a href="#Server10" target="myifram">Server14</a></li></ul></div>
+<!=====================================================================>
+</div></div>
+<div class="accordion-section">
+<a class="accordion-section-title" href="#accordion-3">Accordion Section 03</a>
+<div id="accordion-3" class="accordion-section-content">
+<!=====================================================================>
+<div id="menu"><ul>
+ <li><a href="#Server10" target="myifram">Server10</a></li>
+ <li><a href="#Server10" target="myifram">Server11</a></li>
+ <li><a href="#Server10" target="myifram">Server12</a></li>
+ <li><a href="#Server10" target="myifram">Server13</a></li>
+<li><a href="#Server10" target="myifram">Server14</a></li></ul></div>
+<!=====================================================================>
+</div></div>
+<div class="accordion-section">
+<a class="accordion-section-title" href="#accordion-4">Accordion Section 04</a>
+<div id="accordion-4" class="accordion-section-content">
+<!=====================================================================>
+<div id="menu"><ul>
+ <li><a href="#Server10" target="myifram">Server10</a></li>
+ <li><a href="#Server10" target="myifram">Server11</a></li>
+ <li><a href="#Server10" target="myifram">Server12</a></li>
+ <li><a href="#Server10" target="myifram">Server13</a></li>
+<li><a href="#Server10" target="myifram">Server14</a></li></ul></div>
+<!=====================================================================>
+</div></div>
+
+<div class="accordion-section">
+<a class="accordion-section-title" href="#accordion-5">Accordion Section 05</a>
+<div id="accordion-5" class="accordion-section-content">
+<!=====================================================================>
+<div id="menu"><ul>
+ <li><a href="#Server10" target="myifram">Server10</a></li>
+ <li><a href="#Server10" target="myifram">Server11</a></li>
+ <li><a href="#Server10" target="myifram">Server12</a></li>
+ <li><a href="#Server10" target="myifram">Server13</a></li>
+<li><a href="#Server10" target="myifram">Server14</a></li></ul></div>
+<!=====================================================================>
+</div></div>
+
+<div class="accordion-section">
+<a class="accordion-section-title" href="#accordion-6">Accordion Section 06</a>
+<div id="accordion-6" class="accordion-section-content">
+<!=====================================================================>
+<div id="menu"><ul>
+ <li><a href="#Server10" target="myifram">Server10</a></li>
+ <li><a href="#Server10" target="myifram">Server11</a></li>
+ <li><a href="#Server10" target="myifram">Server12</a></li>
+ <li><a href="#Server10" target="myifram">Server13</a></li>
+<li><a href="#Server10" target="myifram">Server14</a></li></ul></div>
+<!=====================================================================>
+</div></div>
+
+<div class="accordion-section">
+<a class="accordion-section-title" href="#accordion-7">Accordion Section 07</a>
+<div id="accordion-7" class="accordion-section-content">
+<!=====================================================================>
+<div id="menu"><ul>
+ <li><a href="#Server10" target="myifram">Server10</a></li>
+ <li><a href="#Server10" target="myifram">Server11</a></li>
+ <li><a href="#Server10" target="myifram">Server12</a></li>
+ <li><a href="#Server10" target="myifram">Server13</a></li>
+<li><a href="#Server10" target="myifram">Server14</a></li></ul></div>
+<!=====================================================================>
+</div></div>
+</div></div></body></html>
