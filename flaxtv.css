@@ -1,0 +1,101 @@
+/*-------- css by khaled -------- */
+
+::-moz-selection {background-color: #e63946; color: #fff;}
+::selection {background-color: #e63946; color: #fff;}
+
+* {margin: 0; padding: 0; box-sizing: border-box;}
+.item-control.blog-admin {display: inline;}
+
+/*
+@media (min-width: 770px) {body {background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-attachment: fixed;}}
+@media (max-width: 769px) {body {background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); background-attachment: fixed;}}
+*/
+
+@media (min-width: 770px) {body {background: #cebb986b; background-attachment: fixed;}}
+@media (max-width: 769px) {body {background: beige;
+background-attachment: fixed;}}
+
+/* Bg-color #F4EFE6; */
+
+body, html {
+background-color: #F4EFE6 ;
+margin: 0;
+padding: 0;
+height: 100%;
+transition: background-color 1s ease; /* smooth color transition */
+}
+body {overflow-x: hidden; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+.header-inner {padding: 0; margin: 0; height: 60px; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); box-shadow: 0 4px 15px rgba(0,0,0,0.3); position: relative; overflow: hidden;}
+.header-inner::before {content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); animation: shimmer 3s infinite;}
+@keyframes shimmer {0% {transform: translateX(-100%);} 100% {transform: translateX(100%);}}
+.header-inner a {list-style-type: none; text-decoration: none; position: relative; z-index: 1;}
+.header-inner p {margin: 0; color: #ffffff; text-align: center; padding: 3px; font-size: clamp(2.5rem, 5vw, 3rem); font-family: Impact, Arial, Helvetica, sans-serif; line-height: 60px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); transition: transform 0.3s ease;}
+.header-inner p:hover {transform: scale(1.05);}
+.header-inner p span {color: #ff6b6b; text-shadow: 0 0 10px rgba(255,107,107,0.5);}
+.header-inner h1:hover {color: #33fc0b;}
+.footer {padding: 0; margin: 20px 0 0 0; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: #ffffff; height: 50px; line-height: 50px; box-shadow: 0 -4px 15px rgba(0,0,0,0.3); text-align: center;}
+.footer span a {text-decoration: none; color: #ff6b6b; font-weight: bold; transition: color 0.3s ease;}
+.footer span a:hover {color: #ffd93d;}
+.entry-title {
+margin: 10px auto 10px;
+text-align: center;
+max-width: 900px;
+width: 95%;
+padding: 8px;
+font-size: clamp(1rem, 3vw, 1.2rem);
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+border-radius: 15px;
+color: #fff;
+border: none;
+box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+display: block;
+transition: transform 0.3s ease, box-shadow 0.3s ease;}
+.entry-title:hover {transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0,0,0,0.3);}
+.entry-title a {display: block; text-decoration: none; color: #fff; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.3);}
+.entry-title a:hover {color: #ffd93d;}
+.entry-title a:visited {color: #e0e0e0;}
+iframe {border: 2px solid rgba(255,255,255,0.3); border-radius: 10px;}
+#menutv ul {border: none; max-width: 1024px; width: 98%; list-style-type: none; margin: 10px auto; padding: 0; overflow: hidden; background: linear-gradient(135deg, #434343 0%, #000000 100%); border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);}
+#menutv li {float: right; width: 50%;}
+#menutv li a {display: block; font-size: clamp(0.8rem, 2vw, 1rem); text-decoration: none; text-align: center; padding: 5px; cursor: pointer; color: #fff; transition: all 0.3s ease; font-weight: 500;}
+#menutv li a:hover {background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: #fff;}
+.btn.active {background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%); color: #fff; font-weight: bold;}
+#Stats1 {
+text-align:
+center;
+margin-top: -50px;
+color: #fff0;
+font-size: 12px;
+}
+.Stats .blind-plate {border-bottom: 1px solid #fff; border-top: 1px solid #000; height: 0; left: 0; opacity: .65; position: absolute; top: 13px; width: 0px;}
+.Stats .counter-wrapper {font-size: 20px; font-weight: bold; direction: ltr;}
+.Stats .digit {height: 30px; line-height: 30px; text-align: center; margin: 2px; display: inline-block; width: 18px; background: linear-gradient(135deg, #434343 0%, #000000 100%); border: none; border-radius: 5px; color: #fff;}
+h2.title {margin: 10px auto; text-align: center; max-width: 900px; width: 95%; padding: 12px; font-size: clamp(1rem, 3vw, 1.2rem); background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; color: #fff; border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.2);}
+.home-link {display: none;}
+.blog-pager-older-link {display: none;}
+.comment-link {display: none;}
+#blog-pager-newer-link {display: none;}
+.fram {max-width: 1024px; margin: 0 auto;}
+.embed-video {position: relative; width: 99%; padding-bottom: 56.25%; height: 0; margin: 0 auto;}
+iframe {position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.95; border-radius: 10px;}
+@media only screen and (max-width:1000px) {iframe {height: 95%;}}
+.images {max-width: 1200px; margin: 0 auto; padding: 10px;}
+.kchainetv {width: 100%; margin: 20px auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 15px; padding: 10px;}
+.kchainetv a {text-align: center; display: block; text-decoration: none; font-family: Verdana, sans-serif; font-weight: bold; font-size: 10px; color: #fff; transition: transform 0.3s ease;}
+.kchainetv img {
+width: 100%;
+height: auto;
+aspect-ratio: 16/10;
+background-color: #fff;
+border: 2px solid #0586f7;
+border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s ease; cursor: pointer;}
+.kchainetv img:hover {transform: scale(1.1) rotate(2deg); border-color: #ff6b6b; box-shadow: 0 8px 25px rgba(255,107,107,0.5);}
+@media (max-width: 768px) {.kchainetv {grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px;} .header-inner {height: 50px;} .header-inner p {line-height: 50px;}}
+@media (max-width: 480px) {.kchainetv {grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 8px;}}
+.post-outer {background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 15px; padding: 20px; margin: 20px auto; max-width: 1200px; box-shadow: 0 8px 20px rgba(0,0,0,0.2);}
+.post {background: transparent;}
+.post-body {color: #fff;}
+a {transition: all 0.3s ease;}
+
+/*-------- css by khaled -------- */
+
