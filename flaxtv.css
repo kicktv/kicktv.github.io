@@ -25,6 +25,7 @@ height: 100%;
 transition: background-color 1s ease; /* smooth color transition */
 }
 body {overflow-x: hidden; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+
 .header-inner {padding: 0; margin: 0; height: 60px; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); box-shadow: 0 4px 15px rgba(0,0,0,0.3); position: relative; overflow: hidden;}
 .header-inner::before {content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); animation: shimmer 3s infinite;}
 @keyframes shimmer {0% {transform: translateX(-100%);} 100% {transform: translateX(100%);}}
@@ -33,9 +34,11 @@ body {overflow-x: hidden; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans
 .header-inner p:hover {transform: scale(1.05);}
 .header-inner p span {color: #ff6b6b; text-shadow: 0 0 10px rgba(255,107,107,0.5);}
 .header-inner h1:hover {color: #33fc0b;}
+
 .footer {padding: 0; margin: 20px 0 0 0; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: #ffffff; height: 50px; line-height: 50px; box-shadow: 0 -4px 15px rgba(0,0,0,0.3); text-align: center;}
 .footer span a {text-decoration: none; color: #ff6b6b; font-weight: bold; transition: color 0.3s ease;}
 .footer span a:hover {color: #ffd93d;}
+
 .entry-title {
 margin: 10px auto 10px;
 text-align: center;
@@ -54,6 +57,7 @@ transition: transform 0.3s ease, box-shadow 0.3s ease;}
 .entry-title a {display: block; text-decoration: none; color: #fff; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.3);}
 .entry-title a:hover {color: #ffd93d;}
 .entry-title a:visited {color: #e0e0e0;}
+
 iframe {border: 2px solid rgba(255,255,255,0.3); border-radius: 10px;}
 #menutv ul {border: none; max-width: 1024px; width: 98%; list-style-type: none; margin: 10px auto; padding: 0; overflow: hidden; background: linear-gradient(135deg, #434343 0%, #000000 100%); border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);}
 #menutv li {float: right; width: 50%;}
@@ -92,10 +96,36 @@ border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.3
 .kchainetv img:hover {transform: scale(1.1) rotate(2deg); border-color: #ff6b6b; box-shadow: 0 8px 25px rgba(255,107,107,0.5);}
 @media (max-width: 768px) {.kchainetv {grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px;} .header-inner {height: 50px;} .header-inner p {line-height: 50px;}}
 @media (max-width: 480px) {.kchainetv {grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 8px;}}
+
 .post-outer {background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 15px; padding: 20px; margin: 20px auto; max-width: 1200px; box-shadow: 0 8px 20px rgba(0,0,0,0.2);}
 .post {background: transparent;}
 .post-body {color: #fff;}
 a {transition: all 0.3s ease;}
+
+/* --------- start css button إضغط هنا لمشاهدة --------- */
+.jump-link a {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+.jump-link {
+margin: 10px auto 10px;
+text-align: center;
+max-width: 190px;
+width: 20%;
+padding: 5px;
+font-size: clamp(1rem, 3vw, 1.2rem);
+background: red;
+border-radius: 15px;
+color: #fff;
+border: none;
+box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+display: block;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+/* ---------end css button إضغط هنا لمشاهدة --------- */
 
 /*-------- css by khaled -------- */
 
