@@ -1,0 +1,291 @@
+<!DOCTYPE html><html lang="en"><head> <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>chada tv live</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.20.3/video-js.min.css" rel="stylesheet">
+<!--
+<script type="text/javascript">if (self.location == top.location)
+top.location.href = 'http://flaxtv.blogspot.com/2016/04/chada-tv-live.html';</script>
+-->
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+ }
+html, body {
+width: 100%;
+height: 100%;
+overflow: hidden;
+}
+#video-container {
+position: relative;
+width: 100%;
+height: 100%;
+}
+video {object-fit: cover; }
+ .video-js {
+width: 100%;
+height: 100%;
+ }
+
+#logo-text {
+position: fixed;
+top: 50%; 
+left: 50%; 
+transform: translate(-50%, -50%);
+font-size: 4vw;  //18px;
+font-weight: bold;
+font-weight: 700;
+font-family: Arial, sans-serif;
+z-index: 2147483647;
+pointer-events: none;
+color: rgba(1, 0, 1, 0.3);
+//animation: colorFade 8s infinite alternate ease-in-out;
+}
+
+/*
+@keyframes colorFade {
+0% { color: #0000002A; }
+100% { color: #FFFFFF2A;}
+}
+*/
+
+        /* Fullscreen styles for all browsers */
+        .vjs-fullscreen #logo-text,
+        #video-container:fullscreen #logo-text,
+        #video-container:-webkit-full-screen #logo-text,
+        #video-container:-moz-full-screen #logo-text,
+        #video-container:-ms-fullscreen #logo-text {
+            display: block !important;
+            position: fixed !important;
+            z-index: 2147483647 !important;
+        }
+
+        /* iOS Safari fullscreen */
+        .video-js.vjs-fullscreen #logo-text {
+            display: block !important;
+            position: fixed !important;
+        }
+
+@media (max-width: 768px) {
+#logo-text {
+font-size: 6vw; //10px;
+ }
+ }
+
+@media (max-width: 480px) {
+#logo-text {
+font-size: 7vw; //9px;
+ }
+ }
+</style>
+</head><body>
+    <div id="video-container">
+        <video id="my-player" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto">
+            <source src="https://edge14.vedge.infomaniak.com/livecast/ik:chadatv/manifest.m3u8" type="application/x-mpegURL">
+        </video>
+        <div id="logo-text">flaxtv.blogspot.com</div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.20.3/video.min.js"></script>
+    <script>
+        const player = videojs('my-player', {
+            controls: true,
+            autoplay:  true,
+            preload: 'auto',
+            fluid: false,
+            responsive: false,
+            fill: true,
+            liveui: true
+        });
+
+        const logo = document.getElementById('logo-text');
+        const videoContainer = document.getElementById('video-container');
+
+        // Move logo inside video.js player for fullscreen
+        player.ready(function() {
+            const playerEl = document.getElementById('my-player');
+            if (playerEl && logo) {
+                playerEl.appendChild(logo);
+            }
+            
+            this.play().catch(function(error) {
+                console.log('Autoplay prevented:', error);
+            });
+        });
+
+        // Error handling
+        player.on('error', function() {
+            const error = player.error();
+            console.error('Video.js error:', error);
+        });
+    </script>
+</body>
+</html>
+
+
+<!--
+<script type='text/javascript'>
+    if (window.self !== window.top) {
+        // This page is embedded in an iframe
+        // You can handle the situation here, like showing a message or providing alternative content
+        // For example, you can replace the iframe content with an alternative page
+        window.location.replace('https://jumptv.github.io/img/chadatv.png');
+    }
+</script>
+-->
+
+<!--
+<!doctype html><html lang="en"><head><meta charset='utf-8'>
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+ <title>chadatv live </title>
+<script type="text/javascript">if (self.location == top.location)
+top.location.href = 'http://flaxtv.blogspot.com/2016/04/chada-tv-live.html';</script>
+ <link rel="stylesheet" href="https://qanawat.taghtia.com/player/plyr.min.css">
+<style>
+div#player:before, .plyr__video-wrapper:before {
+   content: 'flaxtv.blogspot.com';
+    font-family: impact,Arial,Helvetica,sans-serif;
+    font-size: 10vw;
+    position: fixed;
+    padding: 30px 0; 
+//color:  #ffffff2b;  /*#ffffff4a;*/
+color: #76d2e13b;
+-webkit-text-stroke-width: 3px;
+-webkit-text-stroke-color: #f9f90730;
+
+    top: 50%; left: 50%; transform: translate(-50%, -50%); 
+    z-index: 1; 
+
+   animation: showHide 15s linear infinite;
+}
+@keyframes showHide {
+0% { opacity: 1; }
+66.66% { opacity: 1; }   /* Show for 10s (10/15 = 66.66%) */
+66.67% { opacity: 0; }
+100% { opacity: 0; }     /* Hide for 5s (remaining 33.33%) */
+}
+
+div#player { width: 100% !important; height: 100% !important; } 
+</style>
+  <script
+    src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Array.prototype.includes,CustomEvent,Object.entries,Object.values,URL,Array.prototype.map,Promise,fetch">
+  </script>
+  <script src="https://qanawat.taghtia.com/player/plyr.min.js"></script>
+  <script src="https://qanawat.taghtia.com/player/hls.min.js"></script>
+  <style>
+    body {margin: 0; font-family: Roboto;  background-color: black; }
+ .q-audio {display: flex; align-items: center; height: 100vh; justify-content: center; }
+.q-hls .plyr {height: 100vh; }
+.plyr__menu__container {max-height: calc(100vh - 100% - 20px); overflow-y: auto; }
+.container {position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: #000; z-index: 1000; display: flex; align-items: center;
+ justify-content: center; color: #fff; }
+ .loader {border: 4px solid #000; border-top: 4px solid #fff; border-radius: 50%;
+width: 40px; height: 40px; animation: spin .75s linear infinite; }
+.hidden { display: none;}
+@keyframes spin {0% { transform: rotate(0deg); }
+100% {transform: rotate(360deg); } }
+video {object-fit: fill;} </style>
+</head><body class="q-hls">
+  <div class="container loading"><span class="loader"></span></div>
+  <div class="container error hidden">حدث خطأ ما لدى تشغيل الفيديو، المرجو المحاولة لاحقا</div>
+  <video style="--plyr-color-main: #fb3305;" crossorigin playsinline controls autoplay></video>
+  <script>
+    function debounce(func, delay) {
+      let inDebounce
+      return function() {
+        const context = this
+        const args = arguments
+        clearTimeout(inDebounce)
+        inDebounce = setTimeout(() => func.apply(context, args), delay)
+      }
+    }
+    function load(source) {
+      const video = document.querySelector('video');
+      const defaultOptions = {};
+
+      function updateQuality(newQuality) {
+        window.hls.levels.forEach(function (level, levelIndex) {
+          if (level.height === newQuality) {
+            window.hls.currentLevel = levelIndex;
+          }
+        });
+      }
+      video.addEventListener('ready', function () {
+        document.querySelector('.loading').classList.add('hidden');
+      });
+
+      if (!Hls.isSupported()) {
+        new Plyr(video, defaultOptions);
+        video.src = source;
+        document.querySelector('.loading').classList.add('hidden');
+      } else {
+        const hls = new Hls({
+          manifestLoadingTimeOut: 60000,
+          manifestLoadingMaxRetry: 10,
+          levelLoadingMaxRetry: 10,
+          fragLoadingMaxRetry: 10
+        });
+        hls.loadSource(source || "https://edge14.vedge.infomaniak.com/livecast/ik:chadatv/manifest.m3u8");
+        hls.on(Hls.Events.ERROR, function (event, data) {
+          if (data.fatal) {
+            document.querySelector('.error').classList.remove('hidden');
+            // debounce(function () {
+            //   hls.destroy();
+            //   load();
+            // }, 1000)();
+          }
+        });
+        hls.on(Hls.Events.FRAG_LOADED, function (event, data) {
+          document.querySelector('.error').classList.add('hidden');
+        });
+        hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
+          const availableQualities = hls.levels.map(function (l) {
+            return l.height;
+          });
+
+          defaultOptions.quality = {
+            default: availableQualities[0],
+            options: availableQualities,
+            forced: true,
+            onChange: updateQuality,
+          };
+
+          new Plyr(video, defaultOptions);
+        });
+        hls.attachMedia(video);
+        window.hls = hls;
+      }
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+      load();
+    });
+  </script>
+
+</body></html>
+-->
+
+
+
+<!--
+<style type="text/css">
+html,body {height:100%; width:100%; padding:0; margin:0; }
+video {width: 100%;}
+video {object-fit: fill;}
+</style>
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.3/plyr.css" />
+<script src="http://cdn.jsdelivr.net/hls.js/latest/hls.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.3/plyr.min.js"></script>
+<video class="player" style="--plyr-color-main: #1ac266;"crossorigin playsinline controls autoplay>...</video>
+<script type="text/javascript">
+var video = document.querySelector('video');
+if (Hls.isSupported()) {
+var hls = new Hls();
+hls.loadSource('https://mbc3-eur-prod-dub-ak.akamaized.net/out/v1/fce09dd6a967431a871efb3b8dec9f82/index_4.m3u8');
+//hls.loadSource('https://ott.tv5monde.com/Content/HLS/Live/channel(orient)/variant.m3u8');
+hls.attachMedia(video);
+}
+var player = new Plyr(video, {resetOnEnd: true
+});
+</script> -->
