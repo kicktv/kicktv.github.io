@@ -1,0 +1,112 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JW Player5</title>
+<style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+    }
+    #player_1 {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/jwplayer/5.10/jwplayer.js"></script>
+
+<!--
+<script>
+(function() {
+    const allowedDomain = "wetv.vercel.app";
+
+    // الدومين الحالي (الذي يعرض الصفحة)
+    const currentDomain = window.location.hostname;
+
+    // referrer (الصفحة الأم داخل iframe)
+    const ref = document.referrer || "";
+
+    const isInsideIframe = (window.self !== window.top);
+
+    // شرط السماح الوحيد:
+    // يجب أن يكون داخل iframe
+    // ويجب أن يكون referrer تابعاً لـ flaxtv.blogspot.com
+    const allowed =
+        isInsideIframe &&
+        ref.includes(allowedDomain);
+
+    // إذا لم يكن مسموح → نفذ الحماية
+    if (!allowed) {
+        // إعادة توجيه
+        try {
+            window.location.href = "about:blank";
+        } catch(e){}
+
+        // إذا منع من التوجيه → امسح الصفحة
+        document.body.innerHTML = "";
+        document.documentElement.innerHTML = "";
+        document.write("");
+
+        // خلفية سوداء
+        document.body.style.background = "black";
+
+        // أوقف كل السكربتات
+        throw new Error("Access Denied");
+    }
+})();
+</script>
+
+-->
+
+<script>
+(function() {
+    const allowedDomain = "flaxtv.blogspot.com";
+
+    // الدومين الحالي (الموقع الذي يشغل السكربت)
+    const currentDomain = window.location.hostname;
+
+    // referrer (الموقع الذي جاء منه)
+    const ref = document.referrer || "";
+
+    // إذا لم يكن الدومين الحالي هو المسموح
+    const notAllowed =
+        currentDomain !== allowedDomain &&
+        !ref.includes(allowedDomain);
+
+    // حماية iframe
+    if (window.top !== window.self) {
+        document.body.innerHTML = "";
+        document.body.style.background = "black";
+        return;
+    }
+
+    // إذا غير مسموح → إيقاف كل شيء
+    if (notAllowed) {
+        // حذف الصفحة بالكامل
+        document.write("");
+        document.body.innerHTML = "";
+        document.body.style.background = "black";
+
+        // منع أي سكربت آخر من التشغيل
+        throw new Error("Access Denied");
+    }
+})();
+
+</script>
+
+<head><body>
+<div id="player_1"></div>
+<script type="text/javascript">// <![CDATA[
+jwplayer('player_1').setup({
+    file: "https://uptv.pages.dev/2.mp4",
+    width: "100%",
+    height: "100%",
+    stretching: "fill",
+    flashplayer:"//cdn.jsdelivr.net/jwplayer/5.10/player.swf"
+  });
+// ]]></script>
+</body></html>
