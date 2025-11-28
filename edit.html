@@ -1,0 +1,38 @@
+<!DOCTYPE html><html><head>
+<title>test html online</title>
+<meta name="referrer" content="origin">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="Shortcut Icon" href="//www.html-editor.tk/php.ico" type="image/x-icon" /><style>
+body {margin: 0; padding: 0; background: url(bg-pattern.png) #707275;}
+input.btn1 {font-size:20px; width:45%; height:40px;  color:black;
+font-family:impact,arial,tahoma,helvetica,sans-serif;
+background-color:#12bd04;border: 1px solid; border-color:#fff;border-radius:5px;}
+@media only screen and (max-width:980px) {input.btn1{width:47%; height:36px;}}
+input.btn2 {font-size:20px; width:45%; height:40px;  color:black;
+font-family:impact,arial,tahoma,helvetica,sans-serif;
+background-color:#fe5900;border: 1px solid; border-color:#fff;border-radius:5px;}
+@media only screen and (max-width:980px) {input.btn2{width:47%;height:36px;}}
+h1 {font-family:arial,tahoma ; color:#00ffb7; font:bold 95%}
+@media only screen and (max-width:980px) {h1{font-size:22px; }}
+.textinput {width:90%; height:360px; outline: none;resize: none; border: 1px solid #000;border-radius:5px;}
+@media only screen and (max-width:980px) {.textinput{width:98%;height:360px;}}
+#hits{font-family:'arial'; color:white; font-size:20px; background-color:black; padding:10px; margin:-3px}
+#views{font-family:'arial'; color:white; font-size:20px; background-color:red; padding:10px; margin:0px}
+</style>
+</head><body>
+<script language="JavaScript">
+function preview(){
+temp=document.tester.box.value,preWindow=open("","preWindow"),
+preWindow.document.open(),
+preWindow.document.write(temp),
+preWindow.document.close() }
+</script>
+<center><h1 id="paragraph">HTML And Script Code Tester</h1>
+<form name="tester">
+<textarea  class="textinput"   wrap="physical" name="box"></textarea><br/>
+<input class="btn1" type="button" value="Test HTML Code" onClick="preview()">
+<input class="btn2" type="reset" value="Clear Text Box"></form><br/>
+</center>
+</body></html>
