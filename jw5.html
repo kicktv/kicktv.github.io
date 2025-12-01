@@ -1,0 +1,27 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jwplayer5</title>
+<style>
+html {height: 100%; overflow: hidden;}#flashcontent {height: 100%;}
+body {height: 100%; margin: 0; padding: 0; background-color: #000;}</style>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jwplayer/5.10/jwplayer.js"></script>
+</head><body>
+<div id="player_1"></div>
+<script>
+jwplayer('player_1').setup({
+    file: "turcon.mp4",
+    image: "https://jumptv.github.io/img/mbc1.png",
+    autostart: "false",
+    width: "100%",
+    height: "100%",
+ volume: "60",
+controlbar: "bottom",
+    stretching: "exactfit",
+    // flashplayer:"https://cdn.jsdelivr.net/jwplayer/5.10/player.swf",
+pulgins: "flaxtv.png",
+    skin:"bekle.zip"
+  });
+</script>
+</body></html>
