@@ -1,0 +1,70 @@
+<!DOCTYPE html><html lang="en"><head>
+<title>Bitmovin Player Demo</title>
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- 
+Bitmovin Player 
+ <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bitmovin-player@8/bitmovinplayer.js"></script>
+ <script type="text/javascript" src="bitmovinplayer.min.js"></script> 
+-->
+
+<script src="https://cdn.jsdelivr.net/npm/bitmovin-player@8.239.0/bitmovinplayer.min.js"></script>
+
+
+<style>
+html,body { height:100%; width:100%; padding:0; margin:0; }
+
+.bmpui-ui-watermark {
+  background-image: url("flaxtv.png");
+  background-size: initial;
+  height: 4em;
+  margin: 2em;
+  opacity: .8;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 4em;
+  //display: none;
+}
+
+.player-wrapper {
+height:100%;width:100%; padding:0; margin:0;position:absolute; z-index:0
+}
+</style>
+</head><body>
+<div class="player-wrapper">
+<div id="player"></div>
+</div>
+
+<script type="text/javascript">
+var conf = {
+key:'3b39bb96-3a85-494b-8364-2b02eb2a530e',
+playback: {
+muted: false,
+autoplay: true
+},
+
+analytics: {
+key: 'db60b91b-fcbd-45c4-be4e-012178856530',
+title: 'flaxtv.blogspot.com',
+videoId: 'wizard-flaxtv.blogspot.com-1765820188184',
+},
+};
+
+var source = {
+title: 'flaxtv.blogspot.com',
+progressive: '01.mp4',
+poster: 'https://cdn.bitmovin.com/content/assets/art-of-motion_drm/art-of-motion_poster.jpg',
+//hls: 'https://live.alarabiya.net/alarabiapublish/alarabiya.smil/playlist.m3u8',
+//dash: 'https://cdn.bitmovin.com/content/assets/MI201109210084/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd',
+
+};
+
+  var player = new bitmovin.player.Player(document.getElementById('player'), conf);
+  player.load(source);
+</script>
+
+</body>
+</html>
