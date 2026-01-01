@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>VideoJS HLS</title>
+<style> body{color:#868688;background-color:#FAFCFF}
+h1{font-size:30px;}
+@media only screen and (max-width:980px) {h1{font-size:8vw;}}
+.bat{width:800px;height:36px;border:1px solid #02C54C;z-index:1;}
+@media only screen and (max-width:980px) {.bat {width:95%;}}
+.btn{color:#fff;background-color:#02C54C;border-color:#02C54C;
+z-index: 2;margin-left:-74px;width:70px;height:40px;} video{object-fit:fill}
+@media only screen and (max-width:980px) {#example-video{width:99%;height:420px;}}
+@media only screen and (max-width:640px) {#example-video{width:99%;height:340px;}}
+@media only screen and (max-width:540px) {#example-video{width:99%;height:240px;}}
+@media only screen and (max-width:400px) {#example-video{width:99%;height:210px;}}
+</style>
+
+<link href="video-js.css" rel="stylesheet">
+
+<!--
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.12.0/video-js.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.12.0/video.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/2.6.1/Youtube.min.js"></script>
+ -->
+ 
+</head><body><center> <h1>Test VideoJS HLS Online </h1><form id=load-url>
+<input type="text" id="url" class="bat" value="https://live-hls-web-aja.getaj.net/AJA/04.m3u8">
+<button type="submit"  class="btn">Load</button></form><br>
+<video id=example-video width="860" height="440" class="video-js vjs-default-skin" controls><source
+ src="https://live-hls-web-aja.getaj.net/AJA/04.m3u8" type="application/x-mpegURL"></video></center>
+ 
+<script src="video.min.js"></script>
+ 
+ <!--
+<script src="https://unpkg.com/videojs-flash/dist/videojs-flash.js"></script>
+<script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+ -->
+ 
+<script> (function(window,videojs){var player=window.player=videojs('example-video');
+var loadUrl=document.getElementById('load-url');
+var url=document.getElementById('url');loadUrl.addEventListener('submit',
+function(event){event.preventDefault();player.src({src:url.value,type:'application/x-mpegURL'});
+return!1})}(window,window.videojs)) </script></body></html>
