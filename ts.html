@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>test player mpeg-ts</title>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: #0a0a0a;
+    color: #e5e5e5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Header bar */
+  .top-bar {
+    width: 100%;
+    height: 5px;
+    background: #000;
+  }
+
+  /* Header content */
+  header {
+    text-align: center;
+    padding: 48px 20px 32px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #a3a3a3;
+  }
+
+  /* Main container */
+  main {
+    width: 100%;
+    padding: 0 20px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  /* Input section */
+  .input-wrap {
+    width: 100%;
+    max-width: 700px;
+  }
+
+  .input-row {
+    display: flex;
+    gap: 12px;
+  }
+
+  input[type="text"] {
+    flex: 1;
+    padding: 14px 16px;
+    font-size: 15px;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    background: #141414;
+    color: #e5e5e5;
+    outline: none;
+    transition: border 0.2s, background 0.2s;
+  }
+
+  input[type="text"]:focus {
+    border-color: #3b82f6;
+    background: #1a1a1a;
+  }
+
+  button {
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 10px;
+    background: #3b82f6;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    white-space: nowrap;
+  }
+
+  button:hover {
+    background: #2563eb;
+  }
+
+  button:active {
+    transform: scale(0.98);
+  }
+
+  /* Video player */
+  .player-wrap {
+    width: 100%;
+    max-width: 700px;
+  }
+
+  video {
+    width: 100%;
+    border-radius: 12px;
+    background: #000;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+
+  .status {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #737373;
+    text-align: center;
+    min-height: 20px;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 1.8rem;
+    }
+    
+    .input-row {
+      flex-direction: column;
+    }
+    
+    button {
+      width: 100%;
+    }
+    
+    header {
+      padding: 32px 20px 24px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+
+<header>
+  <h1>test player mpeg-ts</h1>
+  <h2>test mpeg-ts video player online</h2>
+</header>
+
+<main>
+  <div class="input-wrap">
+    <div class="input-row">
+      <input 
+        type="text" 
+        id="urlInput" 
+        placeholder="Enter mpeg-ts stream URL"
+        value="https://witv.vercel.app/proxy?url=http://mydroon.com:8080/E6ED3E657FAD/B9eypkEE72P8vaK/153582"
+      >
+      <button id="playBtn">Load & Play</button>
+    </div>
+    <div class="status" id="status"></div>
+  </div>
+
+  <div class="player-wrap">
+    <video id="player" controls autoplay playsinline style="width:100%; object-fit: fill;"></video>
+  </div>
+</main>
+
+<script src="http://flaxtv.c1.biz/mpegts.js"></script>
+<script>
+  const video = document.getElementById('player');
+  const urlInput = document.getElementById('urlInput');
+  const playBtn = document.getElementById('playBtn');
+  const status = document.getElementById('status');
+  
+  let player = null;
+
+  function setStatus(msg) {
+    status.textContent = msg;
+  }
+
+  function loadStream(url) {
+    if (!window.mpegts) {
+      setStatus('Error: mpegts.js failed to load');
+      return;
+    }
+
+    if (!mpegts.getFeatureList().mseLivePlayback) {
+      setStatus('Error: MSE Live Playback not supported in this browser');
+      return;
+    }
+
+    // Destroy existing player if any
+    if (player) {
+      player.destroy();
+      player = null;
+    }
+
+    setStatus('Loading stream...');
+    
+    player = mpegts.createPlayer({
+      type: "mpegts",
+      isLive: true,
+      url: url
+    });
+
+    player.attachMediaElement(video);
+    player.load();
+
+    player.play().then(() => {
+      setStatus('Playing');
+    }).catch(err => {
+      setStatus('Playback failed: ' + err.message);
+      console.error(err);
+    });
+
+    player.on(mpegts.Events.ERROR, (errType, errDetail) => {
+      setStatus('Error: ' + errType + ' - ' + errDetail);
+      console.error(errType, errDetail);
+    });
+  }
+
+  playBtn.addEventListener('click', () => {
+    const url = urlInput.value.trim();
+    if (!url) {
+      setStatus('Please enter a URL');
+      return;
+    }
+    loadStream(url);
+  });
+
+  // Load default stream on page load
+  window.addEventListener('load', () => {
+    loadStream(urlInput.value);
+  });
+</script>
+
+</body>
+</html>
