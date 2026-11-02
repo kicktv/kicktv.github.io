@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VideoJS HLS</title>
+<style>
+  :root {
+    --primary: #02C54C;
+    --primary-dark: #029e3d;
+    --danger: #e74c3c;
+    --text: #868688;
+    --border: #d8e0ea;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    color: var(--text);
+    background-color: #FAFCFF;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 30px;
+    color: #2c3e50;
+    font-weight: 600;
+  }
+  @media only screen and (max-width: 980px) { h1 { font-size: 8vw; } }
+
+  /* ---------- Form ---------- */
+  #load-url {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    max-width: 800px;
+    margin: 0 auto 10px;
+    width: 100%;
+  }
+  @media only screen and (max-width: 980px) {
+    #load-url { max-width: 95%; }
+  }
+
+  /* ---------- Text input ---------- */
+  .bat {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 44px;
+    padding: 0 14px;
+    font-size: 15px;
+    color: #2c3e50;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-right: none;
+    border-radius: 8px 0 0 8px;
+    outline: none;
+    transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  }
+  .bat::placeholder { color: #aab4c2; }
+  .bat:hover { border-color: #b9c5d4; }
+  .bat:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(2,197,76,.18);
+    background: #fff;
+  }
+  .bat.is-valid   { border-color: var(--primary); }
+  .bat.is-invalid { border-color: var(--danger); }
+
+  /* ---------- Button ---------- */
+  .btn {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    min-width: 96px;
+    padding: 0 20px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    transition: background-color .2s ease, transform .08s ease, box-shadow .2s ease;
+    box-shadow: 0 2px 6px rgba(2,197,76,.25);
+  }
+  .btn:hover  { background-color: var(--primary-dark); border-color: var(--primary-dark); }
+  .btn:active { transform: translateY(1px); }
+  .btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(2,197,76,.3);
+  }
+  .btn:disabled {
+    background-color: #9bd7b2;
+    border-color: #9bd7b2;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  /* ---------- Status message ---------- */
+  .status {
+    max-width: 800px;
+    margin: 0 auto 18px;
+    min-height: 22px;
+    font-size: 14px;
+    text-align: left;
+    transition: color .2s ease;
+  }
+  @media only screen and (max-width: 980px) { .status { max-width: 95%; } }
+  .status.checking { color: #8a94a6; }
+  .status.valid    { color: var(--primary-dark); }
+  .status.invalid  { color: var(--danger); }
+  .status.error    { color: #b8860b; }
+
+  .spinner {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    margin-right: 6px;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    vertical-align: -2px;
+    animation: spin .7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ---------- Video ---------- */
+  video { object-fit: fill; }
+  @media only screen and (max-width: 980px) { #example-video { width: 99%; height: 420px; } }
+  @media only screen and (max-width: 640px) { #example-video { width: 99%; height: 340px; } }
+  @media only screen and (max-width: 540px) { #example-video { width: 99%; height: 240px; } }
+  @media only screen and (max-width: 400px) { #example-video { width: 99%; height: 210px; } }
+</style>
+
+<link href="video-js.css" rel="stylesheet">
+</head>
+<body>
+  <center>
+    <h1>Test VideoJS HLS Online</h1>
+
+    <form id="load-url" novalidate>
+      <input type="text" id="url" class="bat" spellcheck="false"
+             placeholder="Enter an .m3u8 URL"
+             value="https://live-hls-web-aja.getaj.net/AJA/04.m3u8">
+      <button type="submit" class="btn" id="load-btn">Load</button>
+    </form>
+
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+
+    <video id="example-video" width="860" height="440"
+           class="video-js vjs-default-skin" controls>
+      <source src="https://live-hls-web-aja.getaj.net/AJA/04.m3u8" type="application/x-mpegURL">
+    </video>
+  </center>
+
+  <script src="video.min.js"></script>
+
+  <script>
+  (function (window, videojs) {
+    'use strict';
+
+    var player  = window.player = videojs('example-video');
+    var form    = document.getElementById('load-url');
+    var input   = document.getElementById('url');
+    var button  = document.getElementById('load-btn');
+    var status  = document.getElementById('status');
+
+    var DEFAULT_URL = input.value;
+
+    /* -------------------------------------------------
+     *  Helper: set status message + state classes
+     * ------------------------------------------------- */
+    function setStatus(state, html) {
+      status.className = 'status ' + state;
+      status.innerHTML = html;
+      input.classList.toggle('is-valid',   state === 'valid');
+      input.classList.toggle('is-invalid', state === 'invalid');
+    }
+
+    /* -------------------------------------------------
+     *  Link checker
+     *
+     *  Strategy (in order):
+     *   1. Basic URL syntax validation.
+     *   2. HEAD request (cheap). Many HLS servers block HEAD,
+     *      so we fall back to GET.
+     *   3. If fetch is blocked by CORS (opaque response),
+     *      we report "reachable but not verifiable".
+     * ------------------------------------------------- */
+    function checkLink(url) {
+      // ---- 1. Syntax check ----
+      var parsed;
+      try { parsed = new URL(url); }
+      catch (e) { return Promise.resolve({ ok: false, reason: 'Invalid URL format.' }); }
+
+      if (!/^https?:$/.test(parsed.protocol)) {
+        return Promise.resolve({ ok: false, reason: 'URL must start with http:// or https://.' });
+      }
+
+      // ---- 2. Try HEAD, then GET ----
+      function probe(method) {
+        return fetch(url, { method: method, mode: 'cors', cache: 'no-store' });
+      }
+
+      return probe('HEAD')
+        .catch(function () { return probe('GET'); })
+        .then(function (res) {
+          // Opaque response (CORS blocked) → can't read status
+          if (res.type === 'opaque') {
+            return { ok: true, unverified: true, reason: 'Reachable, but CORS prevents full verification.' };
+          }
+          if (res.ok) { return { ok: true }; }
+          return { ok: false, reason: 'Server responded with HTTP ' + res.status + '.' };
+        })
+        .catch(function (err) {
+          // Network error – could be DNS, offline, blocked, etc.
+          return { ok: false, reason: 'Could not reach server (' + (err.message || 'network error') + ').' };
+        });
+    }
+
+    /* -------------------------------------------------
+     *  Load a stream into the player
+     * ------------------------------------------------- */
+    function loadStream(url) {
+      player.src({ src: url, type: 'application/x-mpegURL' });
+      player.play().catch(function () { /* autoplay may be blocked – ignore */ });
+    }
+
+    /* -------------------------------------------------
+     *  Form submit handler
+     * ------------------------------------------------- */
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      var url = input.value.trim();
+
+      if (!url) {
+        setStatus('invalid', 'Please enter a URL.');
+        input.focus();
+        return;
+      }
+
+      button.disabled = true;
+      setStatus('checking', '<span class="spinner"></span>Checking link…');
+
+      checkLink(url).then(function (result) {
+        button.disabled = false;
+
+        if (result.ok) {
+          if (result.unverified) {
+            setStatus('valid', '⚠ ' + result.reason + ' Loading anyway…');
+          } else {
+            setStatus('valid', '✔ Link is reachable. Loading stream…');
+          }
+          loadStream(url);
+        } else {
+          setStatus('invalid', '✖ ' + result.reason);
+          // Optional: still try to load so user can see the player error
+          // loadStream(url);
+        }
+      });
+    });
+
+    /* -------------------------------------------------
+     *  Live input feedback (debounced syntax check)
+     * ------------------------------------------------- */
+    var debounce;
+    input.addEventListener('input', function () {
+      clearTimeout(debounce);
+      var value = input.value.trim();
+
+      if (!value) { setStatus('', ''); return; }
+
+      debounce = setTimeout(function () {
+        try {
+          var u = new URL(value);
+          if (!/^https?:$/.test(u.protocol)) throw new Error();
+          setStatus('', '');   // reset – final verdict comes from the probe
+          input.classList.add('is-valid');
+        } catch (e) {
+          input.classList.remove('is-valid');
+          input.classList.add('is-invalid');
+        }
+      }, 250);
+    });
+
+  }(window, window.videojs));
+  </script>
+</body>
+</html>
