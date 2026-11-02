@@ -154,8 +154,8 @@
     <div class="status" id="status" role="status" aria-live="polite"></div>
 
     <video id="example-video" width="860" height="440"
-           class="video-js vjs-default-skin" controls>
-      <source src="https://live-hls-web-aja.getaj.net/AJA/04.m3u8" type="application/x-mpegURL">
+class="video-js vjs-default-skin" controls>
+<source src="https://amg17560-fcb-amg17560c1-rakuten-uk-4891.playouts.now.amagi.tv/playlist/amg17560-fcbarcelona-topbarcaenglish-rakutenuk/playlist.m3u8" type="application/x-mpegURL">
     </video>
   </center>
 
@@ -315,12 +315,6 @@ z-index: 2;margin-left:-74px;width:70px;height:40px;} video{object-fit:fill}
 
 <link href="video-js.css" rel="stylesheet">
 
-<!--
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.12.0/video-js.min.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.12.0/video.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/2.6.1/Youtube.min.js"></script>
- -->
- 
 </head><body><center> <h1>Test VideoJS HLS Online </h1><form id=load-url>
 <input type="text" id="url" class="bat" value="https://live-hls-web-aja.getaj.net/AJA/04.m3u8">
 <button type="submit"  class="btn">Load</button></form><br>
@@ -329,14 +323,20 @@ z-index: 2;margin-left:-74px;width:70px;height:40px;} video{object-fit:fill}
  
 <script src="video.min.js"></script>
  
- <!--
-<script src="https://unpkg.com/videojs-flash/dist/videojs-flash.js"></script>
-<script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
- -->
- 
 <script> (function(window,videojs){var player=window.player=videojs('example-video');
 var loadUrl=document.getElementById('load-url');
 var url=document.getElementById('url');loadUrl.addEventListener('submit',
 function(event){event.preventDefault();player.src({src:url.value,type:'application/x-mpegURL'});
 return!1})}(window,window.videojs)) </script></body></html>
 -->
+
+ <!--
+<script src="https://unpkg.com/videojs-flash/dist/videojs-flash.js"></script>
+<script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+ -->
+
+<!--
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.12.0/video-js.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.12.0/video.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-youtube/2.6.1/Youtube.min.js"></script>
+ -->
